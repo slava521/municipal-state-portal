@@ -1,0 +1,10 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password": "fdou5820",
+  "database": "municipal_state_portal",
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "synchronize": true
+}
