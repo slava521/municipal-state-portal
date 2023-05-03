@@ -1,0 +1,10 @@
+{
+  "name": "municipal-state-portal",
+  "version": "1.0.0",
+  "dependencies": {
+    "concurrently": "^8.0.1"
+  },
+  "scripts": {
+    "dev": "concurrently \"cd backend && npm run start:dev\" \"cd frontend && npm start\""
+  }
+}
