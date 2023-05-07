@@ -11,9 +11,11 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <BrowserRouter>
-                <Box>
-                    <Header/>
-                    <Main/>
+                <Box sx={{display:'flex',flexDirection:'column',justifyContent:'space-between',width:'100%',minHeight:'100vh'}}>
+                    <Box>
+                        <Header/>
+                        <Main/>
+                    </Box>
                     <Footer/>
                 </Box>
             </BrowserRouter>

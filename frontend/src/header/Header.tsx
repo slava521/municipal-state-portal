@@ -1,64 +1,59 @@
-import {AppBar, Box, Button, ButtonGroup, Toolbar, Typography} from "@mui/material";
+import {AppBar, Box, Button, IconButton, Toolbar, Typography, useMediaQuery} from "@mui/material";
 import React from "react";
-import {Component} from "react";
 import {Link} from "react-router-dom";
 import "./header.css"
+import Buttons from "./Navigation/Buttons";
+import Menu from "./Navigation/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
 
-interface Props {
-}
 
-export default class Header extends Component<Props, any> {
-    render() {
-        return (
-            <Box sx={{flexGrow: 1}}>
-                <AppBar position="static">
-                    <Toolbar>
-                        <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
-                            <Link to="/" style={{'textDecoration': 'none', 'color': 'inherit'}}>
-                                Cheb.ru
-                            </Link>
-                            <ButtonGroup variant="text" aria-label="text button group" color='secondary'>
-                                <Button color="inherit">
-                                    <Link to="/" style={{'textDecoration': 'none', 'color': 'inherit'}}>
-                                        Главная
-                                    </Link>
-                                </Button>
-                                <Button color="inherit">
-                                    <Link to="/news" style={{'textDecoration': 'none', 'color': 'inherit'}}>
-                                        Новости
-                                    </Link>
-                                </Button>
-                                <Button color="inherit">
-                                    <Link to="/services" style={{'textDecoration': 'none', 'color': 'inherit'}}>
-                                        Услуги
-                                    </Link>
-                                </Button>
-                                <Button color="inherit">
-                                    <Link to="/about" style={{'textDecoration': 'none', 'color': 'inherit'}}>
-                                        О нас
-                                    </Link>
-                                </Button>
-                                <Button color="inherit">
-                                    <Link to="/contacts" style={{'textDecoration': 'none', 'color': 'inherit'}}>
-                                        Контакты
-                                    </Link>
-                                </Button>
-                            </ButtonGroup>
-                        </Typography>
+export default function Header(props) {
+    const [open, setOpen] = React.useState(false);
 
-                        <Button color="inherit">
-                            <Link to="/abc" style={{'textDecoration': 'none', 'color': 'inherit'}}>
-                                Вход
-                            </Link>
-                        </Button>
-                        <Button color="inherit">
-                            <Link to="/abcd" style={{'textDecoration': 'none', 'color': 'inherit'}}>
-                                Регистрация
-                            </Link>
-                        </Button>
-                    </Toolbar>
-                </AppBar>
-            </Box>
-        );
+    const openDrawer = ()=>{
+        setOpen(true)
     }
+
+    const closeDrawer = ()=>{
+        setOpen(false)
+    }
+
+    const isTabletOrMobile = useMediaQuery('(max-width: 768px)')
+    const isBigScreen = useMediaQuery('(min-width: 769px)')
+    return (
+        <Box sx={{flexGrow: 1}}>
+            <AppBar position="static">
+                <Toolbar>
+                    {isTabletOrMobile && <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{mr: 2}}
+                        onClick={openDrawer}
+                    >
+                        <MenuIcon/>
+                    </IconButton>}
+                    <Menu open={open} close={closeDrawer}/>
+                    <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
+                        <Link to="/" style={{'textDecoration': 'none', 'color': 'inherit'}}>
+                            Cheb.ru
+                        </Link>
+                        {isBigScreen && <Buttons/>}
+                    </Typography>
+
+                    <Button color="inherit">
+                        <Link to="/login" style={{'textDecoration': 'none', 'color': 'inherit'}}>
+                            Вход
+                        </Link>
+                    </Button>
+                    <Button color="inherit">
+                        <Link to="/registration" style={{'textDecoration': 'none', 'color': 'inherit'}}>
+                            Регистрация
+                        </Link>
+                    </Button>
+                </Toolbar>
+            </AppBar>
+        </Box>
+    );
 }

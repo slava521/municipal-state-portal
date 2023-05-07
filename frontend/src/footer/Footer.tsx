@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Container} from "@mui/material";
+import {Box, Container} from "@mui/material";
 
 
 interface Props {
@@ -8,9 +8,11 @@ interface Props {
 export default class Footer extends Component<Props, any> {
     render() {
         return (
-            <Container>
-                footer
-            </Container>
+            <Box sx={{backgroundColor:'primary.main',color:'primary.contrastText'}}>
+                <Container>
+                    footer
+                </Container>
+            </Box>
         )
     }
 }

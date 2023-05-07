@@ -6,6 +6,8 @@ import ServicesPage from "./ServicesPage/ServicesPage";
 import NewsPage from "./NewsPage/NewsPage";
 import AboutPage from "./AboutPage/AboutPage";
 import ContactsPage from "./ContactsPage/ContactsPage";
+import LoginPage from "./LoginPage/LoginPage";
+import RegistrationPage from "./RegistrationPage/RegistrationPage";
 
 
 interface Props {
@@ -21,8 +23,9 @@ export default class Main extends Component<Props, any> {
                     <Route path='/news' element={<NewsPage/>}/>
                     <Route path='/about' element={<AboutPage/>}/>
                     <Route path='/contacts' element={<ContactsPage/>}/>
+                    <Route path='/login' element={<LoginPage/>}/>
+                    <Route path='/registration' element={<RegistrationPage/>}/>
                 </Routes>
-
             </Container>
         )
     }
