@@ -1,4 +1,6 @@
 import axios from 'axios';
+import RenderPage from "../render";
+import {root} from "../index";
 
 export const api = axios.create({
     baseURL: 'http://localhost:5000/',
@@ -13,4 +15,5 @@ export function setAuthToken(token) {
     } else {
         delete api.defaults.headers.common['Authorization'];
     }
+    RenderPage(root)
 }

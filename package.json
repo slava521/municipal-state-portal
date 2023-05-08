@@ -2,7 +2,8 @@
   "name": "municipal-state-portal",
   "version": "1.0.0",
   "dependencies": {
-    "concurrently": "^8.0.1"
+    "concurrently": "^8.0.1",
+    "react-router-dom": "^6.11.1"
   },
   "scripts": {
     "dev": "concurrently \"cd backend && npm run start:dev\" \"cd frontend && npm start\""

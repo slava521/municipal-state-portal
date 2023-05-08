@@ -5,17 +5,26 @@ import "./header.css"
 import Buttons from "./Navigation/Buttons";
 import Menu from "./Navigation/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
+import {isAuthenticated} from "../authorisation/isAuthenticated";
+import {AccountCircle} from "@mui/icons-material";
+import {setAuthToken} from "../authorisation/auth";
 
 
-export default function Header(props) {
+export default function Header() {
     const [open, setOpen] = React.useState(false);
 
-    const openDrawer = ()=>{
+    const openDrawer = () => {
         setOpen(true)
     }
 
-    const closeDrawer = ()=>{
+    const closeDrawer = () => {
         setOpen(false)
+    }
+
+    const logout=()=>{
+        console.log('aaa')
+        localStorage.removeItem("token")
+        setAuthToken(null)
     }
 
     const isTabletOrMobile = useMediaQuery('(max-width: 768px)')
@@ -41,17 +50,40 @@ export default function Header(props) {
                         </Link>
                         {isBigScreen && <Buttons/>}
                     </Typography>
-
-                    <Button color="inherit">
-                        <Link to="/login" style={{'textDecoration': 'none', 'color': 'inherit'}}>
-                            Вход
-                        </Link>
-                    </Button>
-                    <Button color="inherit">
-                        <Link to="/registration" style={{'textDecoration': 'none', 'color': 'inherit'}}>
-                            Регистрация
-                        </Link>
-                    </Button>
+                    {!isAuthenticated() &&
+                        <>
+                            <Button color="inherit">
+                                <Link to="/login" style={{'textDecoration': 'none', 'color': 'inherit'}}>
+                                    Вход
+                                </Link>
+                            </Button>
+                            <Button color="inherit">
+                                <Link to="/registration" style={{'textDecoration': 'none', 'color': 'inherit'}}>
+                                    Регистрация
+                                </Link>
+                            </Button>
+                        </>
+                    }
+                    {isAuthenticated() &&
+                        <>
+                            <IconButton
+                                size="large"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                color="inherit"
+                            >
+                                <Link to="/profile" style={{'textDecoration': 'none', 'color': 'inherit'}}>
+                                    <AccountCircle />
+                                </Link>
+                            </IconButton>
+                            <Button color="inherit" onClick={logout} >
+                                <Link to="/" style={{'textDecoration': 'none', 'color': 'inherit'}}>
+                                    Выйти
+                                </Link>
+                            </Button>
+                        </>
+                    }
                 </Toolbar>
             </AppBar>
         </Box>

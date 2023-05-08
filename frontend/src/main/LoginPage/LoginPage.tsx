@@ -1,12 +1,15 @@
 import React from "react";
 import {Box, Button, FormControl, IconButton, Input, InputAdornment, InputLabel, TextField} from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
-import axios from "axios";
+import {Navigate} from "react-router-dom";
+import {api, setAuthToken} from "../../authorisation/auth";
+import {isAuthenticated} from "../../authorisation/isAuthenticated";
 
 export default function LoginPage(){
     const [showPassword, setShowPassword] = React.useState(false);
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [redirectToHome, setRedirectToHome] = React.useState(false);
 
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -15,10 +18,24 @@ export default function LoginPage(){
         event.preventDefault();
     };
 
+    if (redirectToHome) {
+        return <Navigate to="/" />;
+    }
+
+
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        const response = await axios.post('https://jsonplaceholder.typicode.com/posts', { email, password });
-        console.log(response);
+        try {
+            event.preventDefault();
+            const response = await api.post('auth/login', {email, password});
+            localStorage.setItem('token', response.data.token);
+            setAuthToken(response.data.token)
+            if (isAuthenticated()){
+                setRedirectToHome(true);
+            }
+
+        }catch (e){
+            console.log(e.request.response)
+        }
     };
 
     return(

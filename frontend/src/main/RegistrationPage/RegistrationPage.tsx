@@ -3,6 +3,7 @@ import {api, setAuthToken} from "../../authorisation/auth";
 import {Box, Button, FormControl, IconButton, Input, InputAdornment, InputLabel, TextField} from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import {isAuthenticated} from "../../authorisation/isAuthenticated";
+import {Navigate} from 'react-router-dom';
 
 export default function RegistrationPage() {
     const [showPassword, setShowPassword] = React.useState(false);
@@ -10,6 +11,7 @@ export default function RegistrationPage() {
     const [surname, setSurname] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [redirectToHome, setRedirectToHome] = React.useState(false);
 
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -18,13 +20,20 @@ export default function RegistrationPage() {
         event.preventDefault();
     };
 
+    if (redirectToHome) {
+        return <Navigate to="/" />;
+    }
+
+
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
             const response = await api.post('auth/registration', {name,surname,email, password});
             localStorage.setItem('token', response.data.token);
             setAuthToken(response.data.token)
-            console.log(response.data.token);
+            if (isAuthenticated()){
+                setRedirectToHome(true);
+            }
 
         }catch (e){
             console.log(e.request.response)
