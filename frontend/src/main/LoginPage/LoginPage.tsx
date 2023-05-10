@@ -1,7 +1,7 @@
 import React from "react";
 import {Box, Button, FormControl, IconButton, Input, InputAdornment, InputLabel, TextField} from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
-import {Navigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {api, setAuthToken} from "../../authorisation/auth";
 import {isAuthenticated} from "../../authorisation/isAuthenticated";
 
@@ -9,7 +9,8 @@ export default function LoginPage(){
     const [showPassword, setShowPassword] = React.useState(false);
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const [redirectToHome, setRedirectToHome] = React.useState(false);
+
+    const navigate = useNavigate();
 
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -18,9 +19,6 @@ export default function LoginPage(){
         event.preventDefault();
     };
 
-    if (redirectToHome) {
-        return <Navigate to="/" />;
-    }
 
 
     const handleSubmit = async (event) => {
@@ -29,8 +27,9 @@ export default function LoginPage(){
             const response = await api.post('auth/login', {email, password});
             localStorage.setItem('token', response.data.token);
             setAuthToken(response.data.token)
-            if (isAuthenticated()){
-                setRedirectToHome(true);
+            console.log(response.data.token)
+            if (isAuthenticated()) {
+                navigate("/");
             }
 
         }catch (e){

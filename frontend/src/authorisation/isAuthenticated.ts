@@ -1,12 +1,13 @@
 import jwt_decode from 'jwt-decode'
 
 interface DecodedToken {
+    name: string;
+    surname:string;
     email: string;
     id: number;
     roles: [];
     iat: number;
     exp: number;
-    // другие свойства токена, если они используются
 }
 
 export function isAuthenticated() {

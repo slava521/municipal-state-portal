@@ -31,9 +31,9 @@ export default function HomePage() {
     const style: style = {
         box: {
             width: boxWidth,
-            backgroundColor: '#F4F4E6',
+            backgroundColor: 'secondary.main',
             minHeight: '200px',
-            boxShadow: '0 0 6px #F4F4E6',
+            boxShadow: '0 0 6px secondary.main',
             padding: '10px',
             marginTop: '20px',
             display: 'flex',
@@ -65,7 +65,10 @@ export default function HomePage() {
                     </Link>
                 </Box>
                 <Box sx={style.box}>
-                    <Typography variant="h6" component='h2'>О нас</Typography>
+                    <Box>
+                        <Typography variant="h6" component='h2'>О нас</Typography>
+                        <Typography>Муниципальный государственный портал города Чебоксары является официальным источником информации о жизни и деятельности города. На портале можно получить доступ к новостям, услугам и загрузить необходимые документы.</Typography>
+                    </Box>
                     <Link to="/about" style={{'color': 'inherit'}}>
                         Узнать больше
                     </Link>

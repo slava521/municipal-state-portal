@@ -4,6 +4,9 @@ import {UsersModule} from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import {ConfigModule} from "@nestjs/config";
 import {AuthModule} from "./auth/auth.module";
+import {PostsModule} from "./posts/posts.module";
+import {ServeStaticModule} from "@nestjs/serve-static";
+import {join} from "path";
 
 @Module({
     controllers: [],
@@ -22,9 +25,13 @@ import {AuthModule} from "./auth/auth.module";
             models: [],
             autoLoadModels: true,
         }),
+        ServeStaticModule.forRoot({
+            rootPath: join(__dirname,'..','static'),
+        }),
         UsersModule,
         RolesModule,
         AuthModule,
+        PostsModule
     ],
 })
 export class AppModule {

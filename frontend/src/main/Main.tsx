@@ -21,7 +21,7 @@ export default function Main() {
     }
 
     return (
-        <Container>
+        <Container sx={{mt:'20px',mb:'20px'}}>
             <Routes>
                 <Route path='/' element={<HomePage/>}/>
                 <Route path='/services' element={<ServicesPage/>}/>
