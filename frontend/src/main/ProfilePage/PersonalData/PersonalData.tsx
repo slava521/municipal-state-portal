@@ -63,7 +63,7 @@ export default function PersonalData() {
 
     return (
         <Box sx={{width: '60%', margin: 'auto'}}>
-            <Typography variant='h5'>Персональные данные</Typography>
+            <Typography variant='h5' >Персональные данные</Typography>
             <Box sx={{display: 'flex', flexDirection: 'column', gap: "1rem"}}>
                 <TextField id="name" label="Имя" variant="standard" value={mainProfileData.name} disabled/>
                 <TextField id="surname" label="Фамилия" variant="standard" value={mainProfileData.surname} disabled/>
@@ -117,7 +117,7 @@ export default function PersonalData() {
                                type='number'
                                value={profileData.SNILS}
                                onChange={(event)=>handleChange(event,'SNILS')}/>
-                    {open && <Button type='submit'>Сохранить</Button>}
+                    {open && <Button type='submit' variant='contained'>Сохранить</Button>}
                 </form>
 
             </Box>

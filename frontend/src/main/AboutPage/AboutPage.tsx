@@ -13,10 +13,10 @@ export default function AboutPage() {
             <Typography variant="h4" component='h2'>О нас</Typography>
             <Box sx={{
                 width: 'calc(100% - 40px)',
-                backgroundColor: 'secondary.main',
                 minHeight: '200px',
-                boxShadow: '0 0 6px secondary.main',
-                padding: '20px',
+                boxShadow: '0 10px 15px rgba(0,0,0,0.2)',
+                borderRadius:'16px',
+                padding: '32px',
                 marginTop: '20px'
             }}>
                 <Typography sx={styleParagraph} variant="h6">Добро пожаловать на муниципальный государственный портал города Чебоксары!</Typography>

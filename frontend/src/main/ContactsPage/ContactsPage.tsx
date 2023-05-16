@@ -11,36 +11,61 @@ export default function ContactsPage() {
         display: 'flex',
         alignItems: 'center'
     }
+    const styleIcons: CSS.Properties = {
+        marginRight: '3px'
+    }
+    const leftColumn: CSS.Properties = {
+        minWidth: '170px'
+    }
+    const link: CSS.Properties = {
+        color: '#2879c0',
+        fontWeight: 600,
+        textDecoration: 'none',
+        display: 'flex',
+        alignItems: 'center',
+    }
+
     return (
         <Box>
             <Typography variant="h4" component='h2'>Контакты</Typography>
             <Box sx={{
                 width: 'calc(100% - 40px)',
-                backgroundColor: 'secondary.main',
                 minHeight: '200px',
-                boxShadow: '0 0 6px secondary.main',
-                padding: '20px',
+                boxShadow: '0 10px 15px rgba(0,0,0,0.2)',
+                borderRadius: '16px',
+                padding: '32px',
                 marginTop: '20px'
             }}>
-                <Typography sx={styleParagraph} component='p'>Электронная почта: <Link
-                    href="mailto:semenovslava293@gmail.com" sx={{color: 'inherit', display: 'flex', alignItems: 'center', ml: '4px'}}
-                    target='_blank'><MailIcon/>semenovslava293@gmail.com</Link></Typography>
-                <Typography sx={styleParagraph} component='p'>Телефон: <Link href="tel:89520239115" sx={{
-                    color: 'inherit',
-                    display: 'flex',
-                    alignItems: 'center',
-                    ml: '4px'
-                }} target='_blank'><Call/>+7 (952) 023-91-15</Link></Typography>
-                <Typography sx={styleParagraph} component='p'>Telegram: <Link
-                    href="https://t.me/+79520239115"
-                    sx={{color: 'inherit', display: 'flex', alignItems: 'center', ml: '4px'}}
-                    target='_blank'><Telegram/>t.me/+79520239115</Link></Typography>
-                <Typography sx={styleParagraph} component='p'>Адрес: <Link
-                    href="https://yandex.ru/maps/-/CCUkYBWH0D"
-                    sx={{color: 'inherit', display: 'flex', alignItems: 'center', ml: '4px'}} target='_blank'><Home/>г.Москва,
-                    ул.1-я Синичкина, д.3, к.1А</Link></Typography>
-                <Typography sx={styleParagraph} component='p'>График работы: среда - четверг с 12:00
-                    до 13:00.</Typography>
+                <Typography sx={styleParagraph} component='p'>
+                    <Box sx={leftColumn}>Электронная почта:</Box>
+                    <Link
+                        href="mailto:semenovslava293@gmail.com"
+                        sx={link}
+                        target='_blank'>
+                        <MailIcon sx={styleIcons}/>semenovslava293@gmail.com</Link>
+                </Typography>
+                <Typography sx={styleParagraph} component='p'>
+                    <Box sx={leftColumn}>Телефон:</Box>
+                    <Link href="tel:89520239115" sx={link} target='_blank'><Call sx={styleIcons}/>+7 (952)
+                        023-91-15</Link>
+                </Typography>
+                <Typography sx={styleParagraph} component='p'>
+                    <Box sx={leftColumn}>Telegram:</Box>
+                    <Link
+                        href="https://t.me/+79520239115"
+                        sx={link}
+                        target='_blank'><Telegram sx={styleIcons}/>t.me/+79520239115</Link>
+                </Typography>
+                <Typography sx={styleParagraph} component='p'>
+                    <Box sx={leftColumn}>Адрес:</Box>
+                    <Link
+                        href="https://yandex.ru/maps/-/CCUkYBWH0D" sx={link} target='_blank'><Home sx={styleIcons}/>г.Москва,
+                        ул.1-я Синичкина, д.3, к.1А</Link>
+                </Typography>
+                <Typography sx={styleParagraph} component='p'>
+                    <Box sx={leftColumn}>График работы:</Box>
+                    среда - четверг с 12:00 до 13:00.
+                </Typography>
                 <Typography sx={styleParagraph} style={{marginBottom: '10px'}} component='p'>Если у вас
                     есть вопросы или предложения по улучшению работы портала, пожалуйста, свяжитесь с нами любым удобным
                     для вас способом. Мы всегда готовы ответить на ваши вопросы и помочь вам получить необходимую

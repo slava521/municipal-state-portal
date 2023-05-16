@@ -17,10 +17,10 @@ export default function ProfilePage(){
             <Typography variant="h4" component='h2'>Страница пользователя</Typography>
             <Box sx={{
                 width: 'calc(100% - 40px)',
-                backgroundColor: 'secondary.main',
                 minHeight: '200px',
-                boxShadow: '0 0 6px secondary.main',
-                padding: '20px',
+                boxShadow: '0 10px 15px rgba(0,0,0,0.2)',
+                borderRadius:'16px',
+                padding: '32px',
                 marginTop: '20px',
             }}>
                 <PersonalData/>
