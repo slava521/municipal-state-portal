@@ -1,7 +1,7 @@
 import React from "react";
-import {Box, Button, TextField, Typography} from "@mui/material";
-import {api} from "../../../authorisation/auth";
+import {Box, Button, TextField} from "@mui/material";
 import jwt_decode from "jwt-decode";
+import {apiAddNews} from "../../../api/addNews/apiAddNews";
 
 interface DecodedToken {
     name: string;
@@ -32,11 +32,7 @@ export default function AddNews() {
             formData.append('content',news)
             formData.append('userId',id.toString())
             formData.append('image',image)
-            await api.post('posts', formData, {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            });
-
-
+            await apiAddNews(formData);
         } catch (e) {
             console.log(e.request.response)
         }

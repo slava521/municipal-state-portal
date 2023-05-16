@@ -2,8 +2,8 @@ import React from "react";
 import {Box, Button, FormControl, IconButton, Input, InputAdornment, InputLabel, TextField} from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import {api, setAuthToken} from "../../authorisation/auth";
-import {isAuthenticated} from "../../authorisation/isAuthenticated";
+import {apiLogin, setAuthToken} from "../../api/authorisation/auth";
+import {isAuthenticated} from "../../api/authorisation/isAuthenticated";
 
 export default function LoginPage(){
     const [showPassword, setShowPassword] = React.useState(false);
@@ -24,10 +24,10 @@ export default function LoginPage(){
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
-            const response = await api.post('auth/login', {email, password});
-            localStorage.setItem('token', response.data.token);
-            setAuthToken(response.data.token)
-            console.log(response.data.token)
+            const token = await apiLogin({email, password});
+            localStorage.setItem('token', token);
+            setAuthToken(token)
+            console.log(token)
             if (isAuthenticated()) {
                 navigate("/");
             }

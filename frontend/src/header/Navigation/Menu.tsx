@@ -1,6 +1,7 @@
 import React from "react";
 import {Box, Drawer, List, ListItem, ListItemButton} from "@mui/material";
 import {Link} from "react-router-dom";
+import urls from "./Urls";
 
 export default function Menu(props) {
 
@@ -16,41 +17,19 @@ export default function Menu(props) {
                 onClick={props.close}
             >
                 <List>
-                    <ListItem key={0} disablePadding>
-                        <ListItemButton>
-                            <Link to="/" style={{'textDecoration': 'none', 'color': 'inherit'}}>
-                                Главная
-                            </Link>
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem key={1} disablePadding>
-                        <ListItemButton>
-                            <Link to="/news" style={{'textDecoration': 'none', 'color': 'inherit'}}>
-                                Новости
-                            </Link>
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem key={2} disablePadding>
-                        <ListItemButton>
-                            <Link to="/services" style={{'textDecoration': 'none', 'color': 'inherit'}}>
-                                Услуги
-                            </Link>
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem key={3} disablePadding>
-                        <ListItemButton>
-                            <Link to="/about" style={{'textDecoration': 'none', 'color': 'inherit'}}>
-                                О нас
-                            </Link>
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem key={4} disablePadding>
-                        <ListItemButton>
-                            <Link to="/contacts" style={{'textDecoration': 'none', 'color': 'inherit'}}>
-                                Контакты
-                            </Link>
-                        </ListItemButton>
-                    </ListItem>
+                    {
+                        urls.map((el,key)=>{
+                            return (
+                                <ListItem key={key} disablePadding>
+                                    <ListItemButton>
+                                        <Link to={el.path} style={{'textDecoration': 'none', 'color': 'inherit'}}>
+                                            {el.description}
+                                        </Link>
+                                    </ListItemButton>
+                                </ListItem>
+                            )
+                        })
+                    }
                 </List>
             </Box>
         </Drawer>

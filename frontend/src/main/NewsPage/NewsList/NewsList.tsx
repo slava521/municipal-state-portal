@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Box, Divider, Paper, Stack, styled, Typography} from "@mui/material";
-import {api} from "../../../authorisation/auth";
+import {apiGetNews} from "../../../api/getNews/apiGetNews";
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: '#fff',
@@ -14,8 +14,8 @@ export default function NewsList (props) {
 
     useEffect(() => {
         const fetchProducts = async () => {
-            const response = await api.get('/posts');
-            setPosts(response.data);
+            const news = await apiGetNews()
+            setPosts(news);
         };
 
         fetchProducts();
@@ -38,7 +38,7 @@ export default function NewsList (props) {
                     return (
                         <Item>
                             <Typography variant='h4'>{post.title}</Typography>
-                            <img src={`http://localhost:5000/${post.image}`} alt="File" style={{width:'500px'}}/>
+                            <img src={`http://localhost:5000/${post.image}`} alt="File" style={{width:'100%'}}/>
                             <Typography>{post.content}</Typography>
                         </Item>
                     )

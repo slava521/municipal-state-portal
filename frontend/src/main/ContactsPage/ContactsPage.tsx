@@ -23,8 +23,8 @@ export default function ContactsPage() {
                 marginTop: '20px'
             }}>
                 <Typography sx={styleParagraph} component='p'>Электронная почта: <Link
-                    href="mailto:help@cheb.ru" sx={{color: 'inherit', display: 'flex', alignItems: 'center', ml: '4px'}}
-                    target='_blank'><MailIcon/>help@cheb.ru</Link></Typography>
+                    href="mailto:semenovslava293@gmail.com" sx={{color: 'inherit', display: 'flex', alignItems: 'center', ml: '4px'}}
+                    target='_blank'><MailIcon/>semenovslava293@gmail.com</Link></Typography>
                 <Typography sx={styleParagraph} component='p'>Телефон: <Link href="tel:89520239115" sx={{
                     color: 'inherit',
                     display: 'flex',

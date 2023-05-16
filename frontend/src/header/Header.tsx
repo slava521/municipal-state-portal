@@ -2,11 +2,11 @@ import {AppBar, Box, IconButton, Toolbar, Typography, useMediaQuery} from "@mui/
 import React from "react";
 import {Link} from "react-router-dom";
 import "./header.css"
-import Buttons from "./Navigation/Buttons";
+import NavBar from "./Navigation/NavBar";
 import Menu from "./Navigation/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import {isAuthenticated} from "../authorisation/isAuthenticated";
-import {setAuthToken} from "../authorisation/auth";
+import {isAuthenticated} from "../api/authorisation/isAuthenticated";
+import {apiSignOut} from "../api/authorisation/auth";
 import Authorized from "./Login/Authorized";
 import NotAuthorized from "./Login/NotAuthorized";
 
@@ -22,8 +22,7 @@ export default function Header() {
     }
 
     const logout=()=>{
-        localStorage.removeItem("token")
-        setAuthToken(null)
+        apiSignOut()
     }
 
 
@@ -52,7 +51,7 @@ export default function Header() {
                         <Link to="/" style={{'textDecoration': 'none', 'color': 'inherit'}}>
                             Cheb.ru
                         </Link>
-                        {isBigScreen && <Buttons/>}
+                        {isBigScreen && <NavBar/>}
                     </Typography>
                     {!isAuthenticated() && <NotAuthorized/>}
                     {isAuthenticated() && <Authorized logout={logout}/>}
