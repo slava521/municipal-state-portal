@@ -10,7 +10,7 @@ export default function ProfilePage(){
         if (!isAuthenticated()){
             navigate('/login')
         }
-    },[])
+    })
 
     return(
         <Box>

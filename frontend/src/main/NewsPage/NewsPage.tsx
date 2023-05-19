@@ -11,6 +11,7 @@ export default function NewsPage() {
     const [addWidth, setAddWidth] = React.useState(!isTabletOrMobile ? '265px' : 'calc(100% - 20px)');
     const [listWidth, setListWidth] = React.useState(!isTabletOrMobile ? 'calc(100% - 285px)' : 'calc(100% - 20px)');
     const [flexDirection, setFlexDirection] = React.useState<Property.FlexDirection>(!isTabletOrMobile ? 'row':'column');
+    const [reload,setReload] = React.useState(0)
     const displayForm = isAdmin()?'block':'none'
     React.useEffect(() => {
         if (isAdmin()){
@@ -32,24 +33,28 @@ export default function NewsPage() {
         }
     }, [isTabletOrMobile])
 
+    const reloadList = ()=>{
+        setReload(reload+1)
+    }
+
     return (
         <Box>
             <Typography variant="h4" component='h2'>Новости</Typography>
             <Box sx={{
                 width: 'calc(100% - 40px)',
-                backgroundColor: 'secondary.main',
                 minHeight: '200px',
-                boxShadow: '0 0 6px secondary.main',
-                padding: '20px',
+                boxShadow: '0 10px 15px rgba(0,0,0,0.2)',
+                borderRadius: '16px',
+                padding: '32px',
                 marginTop: '20px',
                 display: 'flex',
                 flexDirection:flexDirection,
             }}>
                 <Box sx={{width:addWidth,marginRight:'20px',marginTop: '10px',display:displayForm}}>
                     <Typography variant='h5' sx={{marginBottom:'10px'}}>Добавить новость</Typography>
-                    <AddNews/>
+                    <AddNews setReload={reloadList}/>
                 </Box>
-                <NewsList width={listWidth}/>
+                <NewsList width={listWidth} reload={reload}/>
             </Box>
         </Box>
     );

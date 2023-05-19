@@ -13,11 +13,16 @@ interface DecodedToken {
     exp: number;
 }
 
-export default function AddNews() {
+export default function AddNews(props) {
     const [title, setTitle] = React.useState('');
     const [news, setNews] = React.useState('');
     const [image, setImage] = React.useState(null);
 
+    const clear=()=>{
+        setTitle('')
+        setNews('')
+        setImage(null)
+    }
     const handleFileChange = (event) => {
         setImage(event.target.files[0]);
     }
@@ -33,6 +38,8 @@ export default function AddNews() {
             formData.append('userId',id.toString())
             formData.append('image',image)
             await apiAddNews(formData);
+            props.setReload()
+            clear()
         } catch (e) {
             console.log(e.request.response)
         }
@@ -46,6 +53,7 @@ export default function AddNews() {
                     variant="standard"
                     label='Заголовок'
                     required
+                    value={title}
                     onChange={(e)=>setTitle(e.target.value)}
                 />
                 <TextField
@@ -55,6 +63,7 @@ export default function AddNews() {
                     rows={4}
                     variant="standard"
                     required
+                    value={news}
                     onChange={(e)=>setNews(e.target.value)}
                 />
                 <input
@@ -63,6 +72,7 @@ export default function AddNews() {
                     id="raised-button-file"
                     type="file"
                     onChange={handleFileChange}
+                    required
                 />
                 <label htmlFor="raised-button-file">
                     <Button variant="outlined" component="span" sx={{mt:'5px',mb:'5px',width:'100%'}}>

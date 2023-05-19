@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {Box, Button, InputLabel, MenuItem, Select, TextField, Typography} from "@mui/material";
+import {Box, Button, InputLabel, MenuItem, Select, TextField, Typography, useMediaQuery} from "@mui/material";
 import FormControl from '@mui/material/FormControl';
 import {apiGetUserData} from "../../../api/userData/apiGetUserData";
 import * as _ from 'lodash';
 import {apiSaveUserData} from "../../../api/userData/apiSaveUserData";
+import {isAdmin} from "../../../api/authorisation/role/isAdmin";
 
 interface MainProfileData {
     name: string;
@@ -35,6 +36,16 @@ export default function PersonalData() {
         userId: null
     })
     const [open,setOpen] = useState(false)
+    const isTabletOrMobile = useMediaQuery('(max-width: 768px)')
+    const [width,setWidth] = useState(!isTabletOrMobile ? '60%' : '100%')
+    React.useEffect(() => {
+        if (!isTabletOrMobile){
+            setWidth('60%')
+        }
+        else{
+            setWidth('100%')
+        }
+    }, [isTabletOrMobile])
 
     useEffect(() => {
         const getData = async () => {
@@ -62,7 +73,7 @@ export default function PersonalData() {
     }
 
     return (
-        <Box sx={{width: '60%', margin: 'auto'}}>
+        <Box sx={{width: {width}, margin: 'auto'}}>
             <Typography variant='h5' >Персональные данные</Typography>
             <Box sx={{display: 'flex', flexDirection: 'column', gap: "1rem"}}>
                 <TextField id="name" label="Имя" variant="standard" value={mainProfileData.name} disabled/>
