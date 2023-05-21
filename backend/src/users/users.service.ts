@@ -30,7 +30,7 @@ export class UsersService {
         return user
     }
     async addRole(dto:AddRoleDto){
-        const user = await this.userRepository.findByPk(dto.userId)
+        const user = await this.getUserByEmail(dto.email)
         const role = await this.rolesService.getRoleByValue(dto.value);
         if (role&&user){
             await user.$add('role',role.id)

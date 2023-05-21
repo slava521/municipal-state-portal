@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {isAuthenticated} from "../../../api/authorisation/isAuthenticated";
 import {getUserApplications} from "../../../api/applications/get/getUserApplications";
-import {Box, Button, ButtonGroup, Paper, Stack, styled, TextField, Typography} from "@mui/material";
+import {Box, Button, Paper, Stack, styled, Typography} from "@mui/material";
 import {deleteApplication} from "../../../api/applications/deleteApplication";
 
 const Item = styled(Paper)(({theme}) => ({

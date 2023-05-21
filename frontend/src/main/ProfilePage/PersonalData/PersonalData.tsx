@@ -86,7 +86,7 @@ export default function PersonalData() {
                             labelId="genderL"
                             id="gender"
                             value={profileData.gender}
-                            label="Age"
+                            label="Пол"
                             onChange={(event)=>handleChange(event,'gender')}
                             sx={{}}
                         >
