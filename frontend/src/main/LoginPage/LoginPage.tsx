@@ -27,7 +27,6 @@ export default function LoginPage(){
             const token = await apiLogin({email, password});
             localStorage.setItem('token', token);
             setAuthToken(token)
-            console.log(token)
             if (isAuthenticated()) {
                 navigate("/");
             }

@@ -8,6 +8,7 @@ import {PostsModule} from "./posts/posts.module";
 import {ServeStaticModule} from "@nestjs/serve-static";
 import {join} from "path";
 import {PersonalDataModule} from './personal-data/personal-data.module';
+import { ApplicationsModule } from './applications/applications.module';
 
 @Module({
     controllers: [],
@@ -34,6 +35,7 @@ import {PersonalDataModule} from './personal-data/personal-data.module';
         AuthModule,
         PostsModule,
         PersonalDataModule,
+        ApplicationsModule,
     ],
 })
 export class AppModule {

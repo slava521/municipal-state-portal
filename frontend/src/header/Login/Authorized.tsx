@@ -1,11 +1,23 @@
 import React from "react";
 import {Button, IconButton} from "@mui/material";
 import {Link} from "react-router-dom";
-import {AccountCircle} from "@mui/icons-material";
+import {AccountCircle, Notifications} from "@mui/icons-material";
 
 export default function Authorized(props){
     return(
         <>
+            <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+                title='Ответы на заявки'
+            >
+                <Link to="/applications" style={{'textDecoration': 'none', 'color': 'inherit'}}>
+                    <Notifications />
+                </Link>
+            </IconButton>
             <IconButton
                 size="large"
                 aria-label="account of current user"

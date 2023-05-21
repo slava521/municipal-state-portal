@@ -36,37 +36,37 @@ export default function ContactsPage() {
                 padding: '32px',
                 marginTop: '20px'
             }}>
-                <Typography sx={styleParagraph} component='p'>
-                    <Box sx={leftColumn}>Электронная почта:</Box>
+                <Typography sx={styleParagraph}>
+                    <span style={leftColumn}>Электронная почта:</span>
                     <Link
                         href="mailto:semenovslava293@gmail.com"
                         sx={link}
                         target='_blank'>
                         <MailIcon sx={styleIcons}/>semenovslava293@gmail.com</Link>
                 </Typography>
-                <Typography sx={styleParagraph} component='p'>
-                    <Box sx={leftColumn}>Телефон:</Box>
+                <Typography sx={styleParagraph}>
+                    <span style={leftColumn}>Телефон:</span>
                     <Link href="tel:89520239115" sx={link} target='_blank'><Call sx={styleIcons}/>+7 (952)
                         023-91-15</Link>
                 </Typography>
-                <Typography sx={styleParagraph} component='p'>
-                    <Box sx={leftColumn}>Telegram:</Box>
+                <Typography sx={styleParagraph}>
+                    <span style={leftColumn}>Telegram:</span>
                     <Link
                         href="https://t.me/+79520239115"
                         sx={link}
                         target='_blank'><Telegram sx={styleIcons}/>t.me/+79520239115</Link>
                 </Typography>
-                <Typography sx={styleParagraph} component='p'>
-                    <Box sx={leftColumn}>Адрес:</Box>
+                <Typography sx={styleParagraph}>
+                    <span style={leftColumn}>Адрес:</span>
                     <Link
                         href="https://yandex.ru/maps/-/CCUkYBWH0D" sx={link} target='_blank'><Home sx={styleIcons}/>г.Москва,
                         ул.1-я Синичкина, д.3, к.1А</Link>
                 </Typography>
-                <Typography sx={styleParagraph} component='p'>
-                    <Box sx={leftColumn}>График работы:</Box>
+                <Typography sx={styleParagraph}>
+                    <span style={leftColumn}>График работы:</span>
                     среда - четверг с 12:00 до 13:00.
                 </Typography>
-                <Typography sx={styleParagraph} style={{marginBottom: '10px'}} component='p'>Если у вас
+                <Typography sx={styleParagraph} style={{marginBottom: '10px'}}>Если у вас
                     есть вопросы или предложения по улучшению работы портала, пожалуйста, свяжитесь с нами любым удобным
                     для вас способом. Мы всегда готовы ответить на ваши вопросы и помочь вам получить необходимую
                     информацию.</Typography>

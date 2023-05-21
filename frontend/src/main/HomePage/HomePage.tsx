@@ -2,6 +2,9 @@ import React from "react";
 import {Box, Typography, useMediaQuery} from "@mui/material";
 import CSS, { Property }  from 'csstype'
 import {Link} from "react-router-dom";
+import LastNews from "./LastNews/LastNews";
+import ServicesPage from "../ServicesPage/ServicesPage";
+import LastServices from "./LastServices/LastServices";
 
 
 interface style {
@@ -57,13 +60,19 @@ export default function HomePage() {
             <Typography sx={{marginTop: '30px',}} variant="h4" component='h1'>Муниципальный государственный портал города Чебоксары</Typography>
             <Box sx={style.boxes}>
                 <Box sx={style.box}>
-                    <Typography variant="h6" component='h2'>Новости</Typography>
+                    <Box>
+                        <Typography variant="h6" component='h2'>Новости</Typography>
+                        <LastNews/>
+                    </Box>
                     <Link to="/news" style={style.link}>
                         Подробнее
                     </Link>
                 </Box>
                 <Box sx={style.box}>
-                    <Typography variant="h6" component='h2'>Услуги</Typography>
+                    <Box>
+                        <Typography variant="h6" component='h2'>Услуги</Typography>
+                        <LastServices/>
+                    </Box>
                     <Link to="/services" style={style.link}>
                         Другие
                     </Link>

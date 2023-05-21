@@ -11,6 +11,9 @@ import RegistrationPage from "./RegistrationPage/RegistrationPage";
 import {isAuthenticated} from "../api/authorisation/isAuthenticated";
 import ErrorPage from "./ErrorPage/ErrorPage";
 import ProfilePage from "./ProfilePage/ProfilePage";
+import services from "./servicesConstant/services";
+import Service from "./ServicesPage/Service/Service";
+import UserApplicationsPage from "./UserApplicationsPage/UserApplicationsPage";
 
 
 export default function Main() {
@@ -25,8 +28,14 @@ export default function Main() {
                 <Route path='/about' element={<AboutPage/>}/>
                 <Route path='/contacts' element={<ContactsPage/>}/>
                 <Route path='/profile' element={<ProfilePage/>}/>
+                <Route path='/applications' element={<UserApplicationsPage/>}/>
                 {!isAuthenticated() && <Route path='/login' element={<LoginPage/>}/>}
                 {!isAuthenticated() && <Route path='/registration' element={<RegistrationPage/>}/>}
+                {
+                    services.map((el,key)=>{
+                        return <Route key={key} path={`/services/${key}`} element={<Service service={el}/>}/>
+                    })
+                }
                 <Route path='*' element={<ErrorPage/>}/>
             </Routes>
         </Container>

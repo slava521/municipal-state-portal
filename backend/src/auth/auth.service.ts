@@ -28,7 +28,7 @@ export class AuthService {
     private async generateToken(user:User){
         const payload = _.pick(user,['name', 'surname', 'email', 'id', 'roles'])
         return{
-            token: this.jwtService.sign(payload)
+            token: this.jwtService.sign(payload,{secret:process.env.PRIVATE_KEY})
         }
     }
 

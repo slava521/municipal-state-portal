@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Box, Typography, useMediaQuery} from "@mui/material";
 import AddNews from "./AddNews/AddNews";
 import NewsList from "./NewsList/NewsList";
@@ -12,9 +12,19 @@ export default function NewsPage() {
     const [listWidth, setListWidth] = React.useState(!isTabletOrMobile ? 'calc(100% - 285px)' : 'calc(100% - 20px)');
     const [flexDirection, setFlexDirection] = React.useState<Property.FlexDirection>(!isTabletOrMobile ? 'row':'column');
     const [reload,setReload] = React.useState(0)
-    const displayForm = isAdmin()?'block':'none'
+
+    const [admin, setAdmin] = useState(false)
+    useEffect(() => {
+        const fetchCivilServantStatus = async () => {
+            const result = await isAdmin();
+            setAdmin(result)
+        };
+        fetchCivilServantStatus();
+    }, [])
+
+    const displayForm = admin?'block':'none'
     React.useEffect(() => {
-        if (isAdmin()){
+        if (admin){
             if (isTabletOrMobile){
                 setAddWidth('calc(100% - 20px)')
                 setListWidth('calc(100% - 20px)')
@@ -31,7 +41,7 @@ export default function NewsPage() {
             setListWidth('calc(100% - 20px)')
             setFlexDirection('column')
         }
-    }, [isTabletOrMobile])
+    }, [isTabletOrMobile,admin])
 
     const reloadList = ()=>{
         setReload(reload+1)

@@ -1,16 +1,16 @@
 import {isAuthenticated} from "../isAuthenticated";
-import {getRoles} from "./getRoles";
+import {api} from "../../api";
 
-export function isAdmin() {
+export async function isAdmin() {
     if (isAuthenticated()) {
-        const roles = getRoles()
-        let flag = false
-        for (let role of roles) {
-            flag = role.value === 'ADMIN'
-            if (flag){
-                return true
+        const roles = await api.get('roles',{
+            headers:{'Authorization':'Bearer '+localStorage.getItem('token')}
+        })
+        for (let role of roles.data) {
+            if (role.value === 'ADMIN') {
+                return true;
             }
         }
     }
-    return false
+    return false;
 }

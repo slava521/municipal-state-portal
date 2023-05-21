@@ -14,11 +14,11 @@ export default function NewsList (props) {
     const [posts, setPosts] = useState([]);
     const [nullOrLoading,setNullOrLoading] = useState('Loading')
     useEffect(() => {
-        const fetchProducts = async () => {
+        const fetchPosts = async () => {
             const news = await apiGetNews()
             setPosts(news.reverse());
         };
-        fetchProducts();
+        fetchPosts();
         if(posts.length===0){
             setNullOrLoading('Новостей пока нет')
         }

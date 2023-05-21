@@ -19,4 +19,9 @@ export class PostsController {
     getPosts(){
         return this.postsService.getAll()
     }
+
+    @Get('/last')
+    getLastPost(){
+        return this.postsService.getLastPost()
+    }
 }
