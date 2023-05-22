@@ -1,5 +1,16 @@
 import React from "react";
-import {Box, Button, FormControl, IconButton, Input, InputAdornment, InputLabel, TextField} from "@mui/material";
+import {
+    Alert,
+    Box,
+    Button,
+    FormControl,
+    IconButton,
+    Input,
+    InputAdornment,
+    InputLabel,
+    Snackbar,
+    TextField
+} from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import {apiLogin, setAuthToken} from "../../api/authorisation/auth";
@@ -9,9 +20,17 @@ export default function LoginPage(){
     const [showPassword, setShowPassword] = React.useState(false);
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [open, setOpen] = React.useState(false);
 
     const navigate = useNavigate();
 
+
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -33,6 +52,7 @@ export default function LoginPage(){
 
         }catch (e){
             console.log(e.request.response)
+            setOpen(true)
         }
     };
 
@@ -64,6 +84,11 @@ export default function LoginPage(){
                     <Button variant="outlined" type='submit'>Войти</Button>
                 </Box>
             </form>
+            <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                    Неправильная почта или пароль
+                </Alert>
+            </Snackbar>
         </Box>
     )
 }

@@ -38,6 +38,4 @@ import { ApplicationsModule } from './applications/applications.module';
         ApplicationsModule,
     ],
 })
-export class AppModule {
-
-}
+export class AppModule {}

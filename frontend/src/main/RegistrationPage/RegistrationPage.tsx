@@ -1,5 +1,16 @@
 import React from "react";
-import {Box, Button, FormControl, IconButton, Input, InputAdornment, InputLabel, TextField} from "@mui/material";
+import {
+    Alert,
+    Box,
+    Button,
+    FormControl,
+    IconButton,
+    Input,
+    InputAdornment,
+    InputLabel,
+    Snackbar,
+    TextField
+} from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import {isAuthenticated} from "../../api/authorisation/isAuthenticated";
 import {useNavigate} from 'react-router-dom';
@@ -11,10 +22,17 @@ export default function RegistrationPage() {
     const [surname, setSurname] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [open, setOpen] = React.useState(false);
 
     const navigate = useNavigate();
 
 
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -35,6 +53,7 @@ export default function RegistrationPage() {
 
         }catch (e){
             console.log(e.request.response)
+            setOpen(true)
         }
     };
 
@@ -71,6 +90,11 @@ export default function RegistrationPage() {
                     <Button variant="outlined" type='submit'>Войти</Button>
                 </Box>
             </form>
+            <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                    Такая почта уже есть
+                </Alert>
+            </Snackbar>
         </Box>
     )
 }
