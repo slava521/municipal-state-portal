@@ -18,7 +18,7 @@ export default function Service(props) {
     const  handleSubmit = async(event) => {
         event.preventDefault()
         await setApplication(props.service,description)
-        navigate('/service')
+        navigate('/services')
     }
 
     return (
