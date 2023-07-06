@@ -4,6 +4,8 @@ import {UserRoles} from "../roles/user-roles.model";
 
 
 interface UserCreationAttrs{
+    name:string;
+    surname:string;
     email:string;
     password:string;
 }
@@ -11,6 +13,12 @@ interface UserCreationAttrs{
 export class User extends Model<User,UserCreationAttrs>{
     @Column({type:DataType.INTEGER,unique:true,autoIncrement:true, primaryKey:true})
     id: number;
+
+    @Column({type:DataType.STRING,allowNull:false})
+    name: string;
+
+    @Column({type:DataType.STRING,allowNull:false})
+    surname: string;
 
     @Column({type:DataType.STRING,unique:true,allowNull:false})
     email: string;

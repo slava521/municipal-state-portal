@@ -2,7 +2,7 @@ import {forwardRef, Module} from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import {UsersModule} from "../users/users.module";
-import {JwtModule, JwtSecretRequestType} from "@nestjs/jwt/dist";
+import {JwtModule} from "@nestjs/jwt/dist";
 
 @Module({
   controllers: [AuthController],

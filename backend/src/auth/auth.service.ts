@@ -1,10 +1,10 @@
-import {HttpException, HttpStatus, Injectable, Post, UnauthorizedException} from '@nestjs/common';
+import {HttpException, HttpStatus, Injectable, UnauthorizedException} from '@nestjs/common';
 import {CreateUserDto} from "../users/dto/create-user.dto";
 import {UsersService} from "../users/users.service";
 import {JwtService} from "@nestjs/jwt/dist";
 import * as bcrypt from 'bcryptjs'
 import {User} from "../users/users.model";
-
+import * as _ from 'lodash';
 @Injectable()
 export class AuthService {
     constructor(private userService:UsersService,
@@ -24,10 +24,11 @@ export class AuthService {
         return this.generateToken(user)
     }
 
+
     private async generateToken(user:User){
-        const payload = {email:user.email,id:user.id,roles:user.roles}
+        const payload = _.pick(user,['name', 'surname', 'email', 'id', 'roles'])
         return{
-            token: this.jwtService.sign(payload)
+            token: this.jwtService.sign(payload,{secret:process.env.PRIVATE_KEY})
         }
     }
 

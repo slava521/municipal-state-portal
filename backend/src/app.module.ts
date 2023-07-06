@@ -1,9 +1,14 @@
 import {Module} from '@nestjs/common';
 import {SequelizeModule} from '@nestjs/sequelize';
 import {UsersModule} from './users/users.module';
-import { RolesModule } from './roles/roles.module';
+import {RolesModule} from './roles/roles.module';
 import {ConfigModule} from "@nestjs/config";
 import {AuthModule} from "./auth/auth.module";
+import {PostsModule} from "./posts/posts.module";
+import {ServeStaticModule} from "@nestjs/serve-static";
+import {join} from "path";
+import {PersonalDataModule} from './personal-data/personal-data.module';
+import { ApplicationsModule } from './applications/applications.module';
 
 @Module({
     controllers: [],
@@ -22,10 +27,15 @@ import {AuthModule} from "./auth/auth.module";
             models: [],
             autoLoadModels: true,
         }),
+        ServeStaticModule.forRoot({
+            rootPath: join(__dirname, '..', 'static'),
+        }),
         UsersModule,
         RolesModule,
         AuthModule,
+        PostsModule,
+        PersonalDataModule,
+        ApplicationsModule,
     ],
 })
-export class AppModule {
-}
+export class AppModule {}

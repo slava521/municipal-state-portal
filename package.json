@@ -5,6 +5,9 @@
     "concurrently": "^8.0.1"
   },
   "scripts": {
-    "dev": "concurrently \"cd backend && npm run start:dev\" \"cd frontend && npm start\""
+    "dev": "concurrently \"cd backend && npm run start:dev\" \"cd frontend && npm start\"",
+    "install:back": "cd backend && npm ci",
+    "install:front": "cd backend && npm ci",
+    "postinstall": "npm run install:back && npm run install:front"
   }
 }
